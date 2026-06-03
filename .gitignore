@@ -1,3 +1,4 @@
 .aider*
 /app/node_modules/
 /node_modules/
+/LightsailDefaultKey-us-east-1.pem
