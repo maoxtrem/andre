@@ -1,0 +1,648 @@
+/* Variables de color - Tema Madera Cálida/Parchemin */
+:root {
+    --wood-950: #ededed;
+    --wood-900: #f7cb79;
+    --wood-850: #4a3a2b;
+    --wood-800: #5d4a35;
+    --wood-700: #7a5a3b;
+    --wood-600: #9a7a5b;
+    --wood-500: #b89a6e;
+    --parchment: #f5e8d6;
+    --smoke: #d4c4b0;
+    --line: rgba(255, 235, 205, 0.15);
+    --shadow: 0 24px 70px rgba(0, 0, 0, 0.25);
+    --font-size-xs: 0.75rem;
+    --font-size-sm: 0.875rem;
+    --font-size-base: 1rem;
+    --font-size-lg: 1.125rem;
+    --font-size-xl: 1.25rem;
+    --font-size-2xl: 1.5rem;
+    --font-size-3xl: 1.875rem;
+    --spacing-xs: 0.25rem;
+    --spacing-sm: 0.5rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 1.5rem;
+    --spacing-xl: 2rem;
+    --shadow-sm: 0 4px 6px rgba(0, 0, 0, 0.08);
+    --shadow-md: 0 8px 16px rgba(0, 0, 0, 0.12);
+    --shadow-lg: 0 24px 70px rgba(0, 0, 0, 0.25);
+    --radius-sm: 8px;
+    --radius-md: 16px;
+    --radius-lg: 24px;
+}
+
+/* Reset y Estilos Base */
+body {
+    min-height: 100vh;
+    color: var(--parchment);
+    font-family: Georgia, "Times New Roman", serif;
+    background:
+        radial-gradient(circle at top left, rgba(180, 122, 78, 0.18), transparent 26%),
+        radial-gradient(circle at top right, rgba(255, 251, 190, 0.08), transparent 20%),
+        linear-gradient(180deg, rgba(255, 245, 230, 0.6), rgba(255, 240, 220, 0.65)),
+        linear-gradient(135deg, var(--wood-850), var(--wood-700));
+}
+
+/* Efecto de textura sobre el body */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.14;
+    background:
+        linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.03), transparent),
+        repeating-linear-gradient(
+            14deg,
+            rgba(250, 250, 250, 0.018) 0,
+            rgba(255, 255, 255, 0.018) 2px,
+            transparent 2px,
+            transparent 15px
+        );
+    mix-blend-mode: screen;
+}
+
+/* Panel general con borde y fondo */
+.hero-panel,
+.gallery-shell,
+.admin-panel {
+    border: 1px solid var(--line);
+    background:
+        linear-gradient(180deg, rgba(255, 247, 231, 0.03), rgba(0, 0, 0, 0.05)),
+        rgba(255, 245, 230, 0.65);
+    box-shadow: var(--shadow);
+    backdrop-filter: blur(10px);
+}
+
+/* Hero Panel */
+.hero-panel {
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-panel::after {
+    content: "";
+    position: absolute;
+    width: 360px;
+    height: 360px;
+    right: -60px;
+    top: -110px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(180, 122, 78, 0.26), transparent 68%);
+    filter: blur(14px);
+}
+
+/* Eyebrow (pequeño texto decorativo) */
+.eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.28em;
+    font-size: 0.72rem;
+    color: var(--smoke);
+}
+
+.eyebrow::before {
+    content: "";
+    width: 38px;
+    height: 1px;
+    background: linear-gradient(90deg, var(--wood-500), transparent);
+}
+
+/* Títulos grandes */
+.display-title {
+    font-size: clamp(2.6rem, 7vw, 5.8rem);
+    line-height: 0.94;
+    color: #f6ead7;
+    text-wrap: balance;
+}
+
+/* Textos secundarios */
+.hero-copy,
+.section-copy,
+.curation-copy,
+.card-copy,
+.admin-copy,
+.footer-note {
+    color: #ccb9a0;
+}
+
+/* Stats */
+.hero-stats {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+}
+
+.stat-box {
+    border-left: 1px solid rgba(180, 122, 78, 0.34);
+    padding-left: 1rem;
+}
+
+.stat-box strong {
+    display: block;
+    color: #f3e5d0;
+    font-size: 1.1rem;
+}
+
+/* Caja de curaduría */
+.curation-box {
+    border: 1px solid rgba(255, 250, 197, 0.08);
+    background:
+        radial-gradient(circle at top, rgba(255, 259, 213, 0.13), transparent 38%),
+        rgba(255, 240, 220, 0.55);
+}
+
+/* Pill de textura */
+.texture-pill {
+    border: 1px solid rgba(255, 250, 197, 0.10);
+    background: rgba(255, 255, 255, 0.03);
+    color: var(--smoke);
+}
+
+/* Títulos de sección */
+.section-title {
+    color: #f3e4d0;
+    font-size: clamp(1.9rem, 3.6vw, 3rem);
+}
+
+/* Botón de toggle admin */
+.admin-toggle {
+    border: 1px solid rgba(255, 250, 197, 0.16);
+    color: #f6ead7;
+    background: rgba(255, 255, 255, 0.03);
+}
+
+.admin-toggle:hover,
+.admin-toggle:focus {
+    color: white;
+    border-color: rgba(255, 250, 197, 0.28);
+    background: rgba(255, 255, 255, 0.06);
+}
+
+/* Panel admin oculto por defecto */
+.admin-panel {
+    display: none;
+}
+
+.admin-panel.is-open {
+    display: block;
+}
+
+/* Labels de formulario */
+.form-label {
+    color: #d4bda0;
+}
+
+/* Inputs de formulario */
+.form-control,
+.form-control:focus,
+select,
+textarea {
+    background: rgba(246, 235, 215, 0.08);
+    border-color: rgba(255, 250, 197, 0.10);
+    color: #f7ead9;
+    box-shadow: none;
+}
+
+.form-control::placeholder,
+select::placeholder,
+textarea::placeholder {
+    color: rgba(235, 216, 190, 0.45);
+}
+
+select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23d4bda0' d='M6 8L2 4h8z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.75rem center;
+    padding-right: 2.5rem;
+}
+
+select:focus {
+    outline: none;
+    border-color: rgba(255, 250, 197, 0.20);
+}
+
+textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+/* Accesibilidad */
+*:focus-visible {
+    outline: 2px solid var(--wood-500);
+    outline-offset: 2px;
+}
+
+/* Botón madera */
+.btn-wood {
+    border: 0;
+    color: #160f0b;
+    background: linear-gradient(135deg, #d6a16a, #8d5b38);
+    box-shadow: 0 12px 24px rgba(141, 91, 56, 0.24);
+}
+
+.btn-wood:hover,
+.btn-wood:focus {
+    color: #160f0b;
+    background: linear-gradient(135deg, #dfac74, #996241);
+    box-shadow: 0 16px 32px rgba(141, 91, 56, 0.32);
+    transform: translateY(-1px);
+}
+
+/* Botón outline envejecido */
+.btn-outline-aged {
+    color: #ebdbc7;
+    border: 1px solid rgba(255, 252, 201, 0.18);
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.btn-outline-aged:hover,
+.btn-outline-aged:focus {
+    color: #fff5e7;
+    border-color: rgba(255, 252, 201, 0.28);
+    background: rgba(255, 255, 255, 0.06);
+}
+
+/* Botón WhatsApp */
+.btn-whatsapp {
+    background: linear-gradient(135deg, #2aba68, #168647);
+    color: white;
+    border: 0;
+}
+
+.btn-whatsapp:hover,
+.btn-whatsapp:focus {
+    color: white;
+    background: linear-gradient(135deg, #31c56f, #1a9150);
+    box-shadow: 0 8px 20px rgba(42, 186, 104, 0.35);
+    transform: translateY(-1px);
+}
+
+/* Tarjeta de galería */
+.gallery-card {
+    border: 1px solid rgba(255, 252, 201, 0.08);
+    background:
+        linear-gradient(180deg, rgba(255, 244, 226, 0.04), rgba(0, 0, 0, 0.08)),
+        rgba(255, 245, 230, 0.70);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+    box-shadow: 0 20px 36px rgba(0, 0, 0, 0.12);
+    height: 100%;
+}
+
+.gallery-card:hover {
+    transform: translateY(-4px) scale(1.01);
+    border-color: rgba(214, 168, 113, 0.22);
+    box-shadow: 0 26px 42px rgba(0, 0, 0, 0.18), 0 0 40px rgba(214, 168, 113, 0.15);
+}
+
+/* Imagen de la tarjeta */
+.gallery-image {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    display: block;
+    background: linear-gradient(135deg, #503224, #1a120f);
+}
+
+/* Cuerpo de la tarjeta */
+.gallery-card .card-body {
+    padding: 1.3rem;
+}
+
+.card-title {
+    color: #f0e2cf;
+    font-size: 1.3rem;
+}
+
+.card-date {
+    color: #c9b59b;
+}
+
+/* Etiqueta de precio */
+.price-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0.55rem 0.9rem;
+    border-radius: 999px;
+    background: rgba(198, 149, 88, 0.16);
+    border: 1px solid rgba(198, 149, 88, 0.24);
+    color: #f7e4c9;
+    font-weight: 700;
+}
+
+/* Estado vacío */
+.empty-state {
+    border: 1px dashed rgba(255, 252, 201, 0.14);
+    border-radius: var(--radius-lg);
+    background: rgba(255, 255, 255, 0.03);
+    color: #cdb89d;
+}
+
+/* Responsive */
+@media (max-width: 991px) {
+    .hero-stats {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 767px) {
+    body {
+        background-attachment: scroll;
+    }
+
+    .hero-panel,
+    .gallery-shell,
+    .admin-panel {
+        border-radius: var(--radius-lg);
+    }
+
+    .display-title {
+        font-size: clamp(2.3rem, 13vw, 4rem);
+    }
+
+    .gallery-card .card-body {
+        padding: 1.1rem;
+    }
+
+    .card-actions {
+        gap: 0.65rem;
+    }
+
+    .card-actions .btn {
+        width: 100%;
+    }
+}
+
+/* Tablets */
+@media (max-width: 991px) and (min-width: 768px) {
+    .hero-panel,
+    .gallery-shell,
+    .admin-panel {
+        border-radius: var(--radius-md);
+    }
+}
+
+/* Animaciones de entrada */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes scaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: -200% center;
+    }
+    100% {
+        background-position: 200% center;
+    }
+}
+
+.fade-in {
+    animation: fadeIn 400ms ease-out;
+}
+
+.slide-in-left {
+    animation: slideInLeft 500ms ease-out;
+}
+
+.slide-in-right {
+    animation: slideInRight 500ms ease-out;
+}
+
+.scale-in {
+    animation: scaleIn 300ms ease-out;
+}
+
+/* Animación para las tarjetas de galería */
+.gallery-card {
+    animation: scaleIn 500ms ease-out;
+}
+
+/* Efecto de brillo al hover */
+.gallery-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: linear-gradient(
+        135deg,
+        transparent 40%,
+        rgba(255, 255, 255, 0.08) 50%,
+        transparent 60%
+    );
+    opacity: 0;
+    transition: opacity 400ms ease;
+    pointer-events: none;
+}
+
+.gallery-card:hover::before {
+    opacity: 1;
+}
+
+/* Efecto de brillo en el borde */
+.gallery-card::after {
+    content: "";
+    position: absolute;
+    inset: -2px;
+    border-radius: calc(var(--radius-lg) + 2px);
+    background: linear-gradient(
+        45deg,
+        transparent,
+        rgba(214, 168, 113, 0.3),
+        transparent
+    );
+    opacity: 0;
+    transition: opacity 400ms ease;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.gallery-card:hover::after {
+    opacity: 1;
+}
+
+/* Efecto de sombra dinámica */
+.gallery-card {
+    box-shadow: 0 20px 36px rgba(0, 0, 0, 0.12);
+    transition: box-shadow 300ms ease, transform 300ms ease;
+}
+
+.gallery-card:hover {
+    box-shadow: 0 26px 42px rgba(0, 0, 0, 0.18), 0 0 40px rgba(214, 168, 113, 0.15);
+    transform: translateY(-4px) scale(1.01);
+}
+
+/* Mejoras para el formulario de administración */
+.admin-panel.is-open .form-control,
+.admin-panel.is-open textarea {
+    transition: background-color 200ms ease, border-color 200ms ease;
+}
+
+.admin-panel.is-open .form-control:focus,
+.admin-panel.is-open textarea:focus {
+    background-color: rgba(246, 235, 215, 0.12);
+    border-color: rgba(214, 168, 113, 0.35);
+}
+
+/* Efecto de brillo en inputs */
+.form-control,
+textarea {
+    position: relative;
+}
+
+.form-control::after,
+textarea::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(214, 168, 113, 0.4), transparent);
+    transform: scaleX(0);
+    transition: transform 300ms ease;
+}
+
+.form-control:focus::after,
+textarea:focus::after {
+    transform: scaleX(1);
+}
+
+/* Mejoras de tipografía */
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 600;
+    letter-spacing: -0.02em;
+}
+
+/* Mejoras en el footer */
+.footer-note {
+    font-size: 0.9rem;
+    color: #b8a590;
+}
+
+/* Efecto de parallax suave en el hero */
+.hero-panel {
+    background:
+        radial-gradient(circle at top left, rgba(180, 122, 78, 0.12), transparent 30%),
+        radial-gradient(circle at bottom right, rgba(25, 20, 15, 0.30), transparent 50%),
+        linear-gradient(180deg, rgba(255, 247, 231, 0.02), rgba(0, 0, 0, 0.04)),
+        rgba(255, 245, 230, 0.65);
+}
+
+/* Mejoras en la caja de curaduría */
+.curation-box {
+    transition: transform 300ms ease, box-shadow 300ms ease;
+}
+
+.curation-box:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.20);
+}
+
+/* Mejoras en las pills de textura */
+.texture-pill {
+    transition: background-color 200ms ease, border-color 200ms ease;
+}
+
+.texture-pill:hover {
+    background-color: rgba(255, 255, 255, 0.06);
+    border-color: rgba(255, 250, 197, 0.20);
+}
+
+/* Mejoras en los stats */
+.stat-box {
+    transition: border-color 200ms ease;
+}
+
+.stat-box:hover {
+    border-color: rgba(180, 122, 78, 0.54);
+}
+
+/* Mejoras en los títulos */
+.display-title,
+.section-title {
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Mejoras en los botones */
+.btn {
+    transition: all 200ms ease;
+}
+
+.btn:active {
+    transform: translateY(0);
+    box-shadow: none;
+}
+
+/* Mejoras en las imágenes */
+.gallery-image {
+    transition: transform 400ms ease;
+}
+
+.gallery-card:hover .Gallery-image {
+    transform: scale(1.05);
+}
+
+/* Mejoras en el scroll */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Mejoras de accesibilidad */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
