@@ -7,6 +7,12 @@ const featuredNext = document.getElementById('featuredNext');
 const gallery = document.getElementById('gallery');
 const adminToggle = document.getElementById('adminToggle');
 const adminPanel = document.getElementById('adminPanel');
+const imageModal = document.getElementById('imageModal');
+const imageModalClose = document.getElementById('imageModalClose');
+const imageModalImg = document.getElementById('imageModalImg');
+const imageModalTitle = document.getElementById('imageModalTitle');
+const imageModalPrice = document.getElementById('imageModalPrice');
+const imageModalDescription = document.getElementById('imageModalDescription');
 const whatsappNumber = '573112910765';
 
 let featuredSlides = [];
@@ -91,6 +97,45 @@ const pickRandomItems = (items, count) => {
 const getFeaturedViewportWidth = () => {
     const viewport = featuredTrack?.parentElement;
     return viewport ? viewport.clientWidth : 0;
+};
+
+const openImageModal = (image) => {
+    if (!imageModal || !imageModalImg || !imageModalTitle || !imageModalPrice || !imageModalDescription) {
+        return;
+    }
+
+    const title = image.title || image.original_name || 'Sin título';
+    const description = image.description || 'Pieza disponible en la colección exclusiva de Andrea.';
+    const hasPrice = image.price !== null && image.price !== undefined;
+
+    imageModalImg.src = `/uploads/${encodeURIComponent(image.filename)}`;
+    imageModalImg.alt = title;
+    imageModalTitle.textContent = title;
+    imageModalPrice.textContent = hasPrice ? formatPrice(image.price) : '';
+    imageModalPrice.classList.toggle('hidden', !hasPrice);
+    imageModalDescription.textContent = description;
+
+    imageModal.classList.remove('hidden');
+    imageModal.classList.add('flex');
+    imageModal.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('overflow-hidden');
+};
+
+const closeImageModal = () => {
+    if (!imageModal || !imageModalImg) {
+        return;
+    }
+
+    imageModal.classList.add('hidden');
+    imageModal.classList.remove('flex');
+    imageModal.setAttribute('aria-hidden', 'true');
+    imageModalImg.src = '';
+    imageModalImg.alt = '';
+    if (imageModalPrice) {
+        imageModalPrice.textContent = '';
+        imageModalPrice.classList.add('hidden');
+    }
+    document.body.classList.remove('overflow-hidden');
 };
 
 // Función para escapar HTML y evitar inyección XSS
@@ -191,7 +236,9 @@ const renderFeaturedSlider = (images) => {
         <article class="w-full min-w-full shrink-0">
             <div class="grid min-h-[30rem] items-stretch lg:min-h-[36rem] lg:grid-cols-2">
                 <div class="flex min-h-[18rem] items-center justify-center overflow-hidden border-b border-slate-200 bg-gradient-to-br from-white to-brand-sand/70 p-5 lg:min-h-full lg:border-b-0 lg:border-r">
-                    <img class="max-h-[26rem] w-auto max-w-full rounded-[1.25rem] object-contain shadow-[0_16px_32px_rgba(42,55,64,0.10)]" src="/uploads/${encodeURIComponent(image.filename)}" alt="${escapeHtml(image.title || image.original_name || 'Foto destacada')}">
+                    <button class="group block cursor-zoom-in" type="button" data-modal-image data-id="${image.id}" aria-label="Ampliar ${escapeHtml(image.title || image.original_name || 'foto destacada')}">
+                        <img class="max-h-[26rem] w-auto max-w-full rounded-[1.25rem] object-contain shadow-[0_16px_32px_rgba(42,55,64,0.10)] transition duration-300 group-hover:scale-[1.01]" src="/uploads/${encodeURIComponent(image.filename)}" alt="${escapeHtml(image.title || image.original_name || 'Foto destacada')}">
+                    </button>
                 </div>
                 <div class="flex h-full items-center bg-white p-6 sm:p-8 lg:p-10">
                     <div class="max-w-xl">
@@ -223,6 +270,16 @@ const renderFeaturedSlider = (images) => {
             });
         });
     }
+
+    featuredTrack.querySelectorAll('[data-modal-image]').forEach((button) => {
+        const image = featuredSlides.find((item) => String(item.id) === button.dataset.id);
+
+        button.addEventListener('click', () => {
+            if (image) {
+                openImageModal(image);
+            }
+        });
+    });
 
     updateFeaturedSlider();
     startFeaturedAutoplay();
@@ -313,7 +370,9 @@ const renderImages = (images) => {
     gallery.innerHTML = images.map((image) => `
         <article class="group flex h-full flex-col overflow-hidden rounded-[1.5rem] border border-slate-200 bg-white shadow-glow transition duration-200 hover:-translate-y-1 hover:border-brand-accent/25 hover:shadow-soft">
             <div class="relative overflow-hidden">
-                <img class="aspect-[3/4] w-full object-cover bg-slate-100 transition duration-500 group-hover:scale-[1.02]" src="/uploads/${encodeURIComponent(image.filename)}" alt="${escapeHtml(image.title || image.original_name || 'Foto de galería')}">
+                <button class="block w-full cursor-zoom-in" type="button" data-modal-image data-id="${image.id}" aria-label="Ampliar ${escapeHtml(image.title || image.original_name || 'foto de galería')}">
+                    <img class="aspect-[3/4] w-full object-cover bg-slate-100 transition duration-500 group-hover:scale-[1.02]" src="/uploads/${encodeURIComponent(image.filename)}" alt="${escapeHtml(image.title || image.original_name || 'Foto de galería')}">
+                </button>
                 <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-transparent opacity-0 transition duration-300 group-hover:opacity-100"></div>
             </div>
             <div class="flex flex-1 flex-col p-4">
@@ -343,6 +402,16 @@ const renderImages = (images) => {
     gallery.querySelectorAll('.delete-button').forEach((button) => {
         button.addEventListener('click', () => deleteImage(button.dataset.id));
     });
+
+    gallery.querySelectorAll('[data-modal-image]').forEach((button) => {
+        const image = images.find((item) => String(item.id) === button.dataset.id);
+
+        button.addEventListener('click', () => {
+            if (image) {
+                openImageModal(image);
+            }
+        });
+    });
 };
 
 if (featuredPrev) {
@@ -364,6 +433,24 @@ if (featuredSection) {
     featuredSection.addEventListener('mouseenter', stopFeaturedAutoplay);
     featuredSection.addEventListener('mouseleave', startFeaturedAutoplay);
 }
+
+if (imageModalClose) {
+    imageModalClose.addEventListener('click', closeImageModal);
+}
+
+if (imageModal) {
+    imageModal.addEventListener('click', (event) => {
+        if (event.target === imageModal) {
+            closeImageModal();
+        }
+    });
+}
+
+document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && imageModal && !imageModal.classList.contains('hidden')) {
+        closeImageModal();
+    }
+});
 
 window.addEventListener('resize', () => {
     if (featuredSlides.length) {
