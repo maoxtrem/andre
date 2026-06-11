@@ -52,20 +52,15 @@ const createWhatsappLink = (image) => {
     const productName = image.title || image.original_name || 'esta pieza';
     const priceText = image.price !== null && image.price !== undefined ? ` por ${formatPrice(image.price)}` : '';
     const message = `Hola Andrea, me interesa ${productName}${priceText}.`;
-    
-    // Crear un div con el icono y el texto
-    const div = document.createElement('div');
-    div.className = 'd-flex align-items-center gap-2';
-    
+
     const icon = document.createElement('i');
     icon.className = 'fa-brands fa-whatsapp';
     icon.style.color = 'white';
-    
+
     const text = document.createElement('span');
     text.className = 'fw-semibold';
     text.textContent = 'Preguntar por WhatsApp';
-    
-    // Crear el enlace
+
     const link = document.createElement('a');
     link.href = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
     link.target = '_blank';
@@ -145,8 +140,8 @@ const renderEmpty = () => {
     gallery.innerHTML = `
         <div class="col-12">
             <div class="empty-state p-5 text-center">
-                <h3 class="h4 mb-3 text-light">La colección aún no ha sido publicada</h3>
-                <p class="mb-0">Pronto aparecerán aquí las piezas exclusivas seleccionadas por Andrea.</p>
+                <h3 class="h4 mb-3 text-body-emphasis">La colección aún no ha sido publicada</h3>
+                <p class="mb-0 text-body-secondary">Pronto aparecerán aquí las piezas exclusivas seleccionadas por Andrea.</p>
             </div>
         </div>
     `;
