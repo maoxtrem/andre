@@ -3,115 +3,188 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Andrea Casa de Arte | Galeria en linea</title>
+    <title>Andrea Casa de Arte | Galería en línea</title>
     <link rel="preconnect" href="https://cdn.jsdelivr.net">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Manrope', 'sans-serif'],
+                        display: ['Cormorant Garamond', 'serif']
+                    },
+                    colors: {
+                        brand: {
+                            cream: '#fcfaf6',
+                            sand: '#f5efe5',
+                            ink: '#24323c',
+                            text: '#586771',
+                            soft: '#7a8790',
+                            accent: '#c98f5c',
+                            sage: '#7fa594'
+                        }
+                    },
+                    boxShadow: {
+                        soft: '0 24px 60px rgba(42, 55, 64, 0.10)',
+                        glow: '0 16px 34px rgba(42, 55, 64, 0.08)'
+                    }
+                }
+            }
+        };
+    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
-    <main class="container py-4 py-lg-5">
-        <section class="hero-panel rounded-5 p-4 p-lg-5 mb-4 fade-in">
-            <div class="row g-4 align-items-center">
-                <div class="col-xl-8">
-                    <span class="eyebrow mb-3 slide-in-left">Andrea Casa de Arte</span>
-                    <h1 class="display-title fw-semibold mb-4 fade-in">Piezas unicas y exclusivas que elevan espacios con arte, presencia y personalidad.</h1>
-                    <p class="hero-copy fs-5 mb-4 fade-in">
-                        Andrea presenta una selección curada de obras para clientes que buscan una experiencia visual limpia,
-                        sofisticada y comercial sin perder el alma artística de cada pieza.
+<body class="min-h-screen overflow-x-hidden bg-brand-cream font-sans text-brand-ink antialiased selection:bg-brand-accent/20 selection:text-brand-ink">
+    <main class="relative mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8 lg:py-8">
+        <div aria-hidden="true" class="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
+            <div class="absolute -left-24 top-12 h-72 w-72 rounded-full bg-brand-accent/20 blur-3xl"></div>
+            <div class="absolute right-0 top-0 h-80 w-80 rounded-full bg-brand-sage/20 blur-3xl"></div>
+            <div class="absolute bottom-0 left-1/3 h-96 w-96 rounded-full bg-brand-accent/10 blur-3xl"></div>
+        </div>
+
+        <section class="mb-5 overflow-hidden rounded-3xl border border-slate-200/80 bg-white/80 shadow-soft backdrop-blur-xl">
+            <div class="grid lg:grid-cols-5">
+                <div class="p-6 sm:p-8 lg:col-span-3 lg:p-10">
+                    <span class="inline-flex items-center gap-3 text-xs font-extrabold uppercase tracking-[0.28em] text-brand-accent">
+                        <span class="h-px w-10 bg-gradient-to-r from-brand-accent to-transparent"></span>
+                        Andrea Casa de Arte
+                    </span>
+                    <h1 class="mt-5 max-w-3xl font-display text-5xl font-semibold leading-[0.9] tracking-[-0.03em] text-brand-ink sm:text-6xl lg:text-7xl">
+                        Piezas únicas y exclusivas que elevan espacios con arte, presencia y personalidad.
+                    </h1>
+                    <p class="mt-6 max-w-2xl text-lg leading-8 text-brand-text sm:text-xl">
+                        Andrea presenta una selección curada de obras para clientes que buscan una experiencia visual limpia, sofisticada y comercial sin perder el alma artística de cada pieza.
                     </p>
-                    <div class="hero-stats">
-                        <div class="stat-box fade-in">
-                            <strong>Curaduria exclusiva</strong>
-                            <span class="text-secondary-emphasis">obras con identidad propia</span>
+                    <div class="mt-8 grid gap-4 md:grid-cols-3">
+                        <div class="rounded-2xl border border-slate-200/80 bg-white/80 p-4 shadow-glow">
+                            <strong class="block text-base font-bold text-brand-ink">Curaduría exclusiva</strong>
+                            <span class="mt-1 block text-sm leading-6 text-brand-text">Obras con identidad propia</span>
                         </div>
-                        <div class="stat-box fade-in">
-                            <strong>Estetica contemporanea</strong>
-                            <span class="text-secondary-emphasis">acabados limpios y memorables</span>
+                        <div class="rounded-2xl border border-slate-200/80 bg-white/80 p-4 shadow-glow">
+                            <strong class="block text-base font-bold text-brand-ink">Estética contemporánea</strong>
+                            <span class="mt-1 block text-sm leading-6 text-brand-text">Acabados limpios y memorables</span>
                         </div>
-                        <div class="stat-box fade-in">
-                            <strong>Atencion personal</strong>
-                            <span class="text-secondary-emphasis">contacto directo para cada interes</span>
+                        <div class="rounded-2xl border border-slate-200/80 bg-white/80 p-4 shadow-glow">
+                            <strong class="block text-base font-bold text-brand-ink">Atención personal</strong>
+                            <span class="mt-1 block text-sm leading-6 text-brand-text">Contacto directo para cada interés</span>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-xl-4">
-                    <div class="curation-box rounded-5 p-4 h-100 d-flex flex-column justify-content-between scale-in">
+                <div class="border-t border-slate-200/70 bg-gradient-to-b from-white/90 to-brand-sand/60 p-6 sm:p-8 lg:col-span-2 lg:border-l lg:border-t-0 lg:p-10">
+                    <div class="flex h-full flex-col justify-between gap-10">
                         <div>
-                            <p class="text-uppercase small mb-2">Coleccion de autor</p>
-                            <h2 class="h2 mb-3">Una galeria luminosa, sofisticada y centrada por completo en la obra.</h2>
-                            <p class="curation-copy mb-4">
-                                Tonos claros, textura suave y una atmosfera editorial para que cada imagen se sienta mas premium y accesible.
+                            <p class="text-xs font-extrabold uppercase tracking-[0.28em] text-brand-sage">Colección de autor</p>
+                            <h2 class="mt-4 font-display text-4xl leading-tight text-brand-ink sm:text-5xl">
+                                Una galería luminosa, sofisticada y centrada por completo en la obra.
+                            </h2>
+                            <p class="mt-4 text-base leading-7 text-brand-text">
+                                Tonos claros, textura suave y una atmósfera editorial para que cada imagen se sienta más premium y accesible.
                             </p>
                         </div>
-                        <div class="d-flex flex-wrap gap-2">
-                            <span class="texture-pill rounded-pill px-3 py-2 small scale-in">Piezas irrepetibles</span>
-                            <span class="texture-pill rounded-pill px-3 py-2 small scale-in">Arte exclusivo</span>
-                            <span class="texture-pill rounded-pill px-3 py-2 small scale-in">Consulta directa</span>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-brand-ink shadow-glow">Piezas irrepetibles</span>
+                            <span class="rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-brand-ink shadow-glow">Arte exclusivo</span>
+                            <span class="rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-brand-ink shadow-glow">Consulta directa</span>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-3">
-            <div>
-                <span class="eyebrow mb-2">Coleccion destacada</span>
-                <h2 class="section-title fw-semibold mb-2">Obras disponibles</h2>
-                <p class="section-copy mb-0">La galeria es el centro de la experiencia. Andrea administra sus piezas de forma discreta cuando lo necesita.</p>
+        <section class="mb-5 rounded-3xl border border-slate-200/80 bg-white/80 p-5 shadow-soft backdrop-blur-xl sm:p-6 lg:p-8">
+            <div class="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+                <div>
+                    <span class="inline-flex items-center gap-3 text-xs font-extrabold uppercase tracking-[0.28em] text-brand-accent">
+                        <span class="h-px w-10 bg-gradient-to-r from-brand-accent to-transparent"></span>
+                        Selección aleatoria
+                    </span>
+                    <h2 class="mt-3 font-display text-4xl font-semibold tracking-[-0.02em] text-brand-ink sm:text-5xl">Cinco piezas cambian en cada visita</h2>
+                    <p class="mt-3 max-w-2xl text-base leading-7 text-brand-text">El carrusel se arma al azar cada vez que se carga la página para que la portada se sienta más viva y menos estática.</p>
+                </div>
+                <div class="flex items-center gap-2">
+                    <button id="featuredPrev" class="inline-flex h-11 w-11 items-center justify-center rounded-full border border-slate-200 bg-white text-brand-ink shadow-glow transition hover:-translate-y-0.5 hover:border-brand-accent/30 hover:bg-brand-cream" type="button" aria-label="Anterior">
+                        <i class="fa-solid fa-chevron-left text-sm"></i>
+                    </button>
+                    <button id="featuredNext" class="inline-flex h-11 w-11 items-center justify-center rounded-full border border-slate-200 bg-white text-brand-ink shadow-glow transition hover:-translate-y-0.5 hover:border-brand-accent/30 hover:bg-brand-cream" type="button" aria-label="Siguiente">
+                        <i class="fa-solid fa-chevron-right text-sm"></i>
+                    </button>
+                </div>
             </div>
-            <div class="d-flex justify-content-md-end">
-                <button id="adminToggle" class="btn admin-toggle rounded-pill px-4 py-3 fw-semibold" type="button" aria-expanded="false">
-                    Gestion privada de piezas
+            <div class="mt-6 overflow-hidden rounded-[1.75rem] border border-slate-200 bg-brand-sand/40">
+                <div id="featuredTrack" class="flex flex-nowrap transition-transform duration-500 ease-out will-change-transform"></div>
+            </div>
+            <div class="mt-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                <p id="featuredCounter" class="text-sm text-brand-text"></p>
+                <div id="featuredDots" class="flex flex-wrap gap-2"></div>
+            </div>
+        </section>
+
+        <section class="mb-4 flex flex-col items-start justify-between gap-4 md:flex-row md:items-end">
+            <div>
+                <span class="inline-flex items-center gap-3 text-xs font-extrabold uppercase tracking-[0.28em] text-brand-accent">
+                    <span class="h-px w-10 bg-gradient-to-r from-brand-accent to-transparent"></span>
+                    Colección destacada
+                </span>
+                <h2 class="mt-3 font-display text-4xl font-semibold tracking-[-0.02em] text-brand-ink sm:text-5xl">Obras disponibles</h2>
+                <p class="mt-3 max-w-2xl text-base leading-7 text-brand-text">La galería es el centro de la experiencia. Andrea administra sus piezas de forma discreta cuando lo necesita.</p>
+            </div>
+            <div class="flex justify-end">
+                <button id="adminToggle" class="inline-flex items-center justify-center rounded-full border border-slate-200 bg-white px-5 py-3 text-sm font-semibold text-brand-ink shadow-glow transition hover:-translate-y-0.5 hover:border-brand-accent/30 hover:bg-brand-cream" type="button" aria-expanded="false">
+                    Gestión privada de piezas
                 </button>
             </div>
         </section>
 
-        <section id="adminPanel" class="admin-panel rounded-5 p-4 p-lg-5 mb-4" aria-hidden="true">
-            <div class="row g-4 align-items-start">
-                <div class="col-lg-4">
-                    <span class="eyebrow mb-3">Acceso privado</span>
-                    <h3 class="h2 mb-3">Agregar una nueva pieza</h3>
-                    <p class="admin-copy mb-0">
+        <section id="adminPanel" class="mb-5 hidden rounded-3xl border border-slate-200/80 bg-white/80 p-6 shadow-soft backdrop-blur-xl lg:p-10" aria-hidden="true">
+            <div class="grid gap-8 lg:grid-cols-5 lg:items-start">
+                <div class="lg:col-span-2">
+                    <span class="inline-flex items-center gap-3 text-xs font-extrabold uppercase tracking-[0.28em] text-brand-sage">
+                        <span class="h-px w-10 bg-gradient-to-r from-brand-sage to-transparent"></span>
+                        Acceso privado
+                    </span>
+                    <h3 class="mt-3 font-display text-3xl font-semibold text-brand-ink sm:text-4xl">Agregar una nueva pieza</h3>
+                    <p class="mt-4 max-w-md text-base leading-7 text-brand-text">
                         Este espacio queda oculto para que la vitrina visual conserve todo el protagonismo.
                     </p>
                 </div>
-                <div class="col-lg-8">
-                    <form action="/upload" method="post" enctype="multipart/form-data" class="row g-3">
-                        <div class="col-md-6">
-                            <label class="form-label">Titulo</label>
-                            <input class="form-control form-control-lg" type="text" name="title" maxlength="120" placeholder="Ej. Escultura en madera tallada">
+                <div class="lg:col-span-3">
+                    <form action="/upload" method="post" enctype="multipart/form-data" class="grid gap-4 sm:grid-cols-2">
+                        <div class="sm:col-span-1">
+                            <label class="mb-2 block text-sm font-semibold text-brand-ink" for="title">Título</label>
+                            <input class="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-brand-ink placeholder:text-slate-400 focus:border-brand-accent/40 focus:outline-none focus:ring-4 focus:ring-brand-accent/10" id="title" type="text" name="title" maxlength="120" placeholder="Ej. Escultura en madera tallada">
                         </div>
-                        <div class="col-md-6">
-                            <label class="form-label">Precio</label>
-                            <input class="form-control form-control-lg" type="text" name="price" inputmode="decimal" maxlength="20" placeholder="Ej. 120000">
+                        <div class="sm:col-span-1">
+                            <label class="mb-2 block text-sm font-semibold text-brand-ink" for="price">Precio</label>
+                            <input class="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-brand-ink placeholder:text-slate-400 focus:border-brand-accent/40 focus:outline-none focus:ring-4 focus:ring-brand-accent/10" id="price" type="text" name="price" inputmode="decimal" maxlength="20" placeholder="Ej. 120000">
                         </div>
-                        <div class="col-12">
-                            <label class="form-label">Descripcion</label>
-                            <textarea class="form-control form-control-lg" name="description" maxlength="500" rows="4" placeholder="Describe origen, estilo, materiales o inspiracion de la pieza"></textarea>
+                        <div class="sm:col-span-2">
+                            <label class="mb-2 block text-sm font-semibold text-brand-ink" for="description">Descripción</label>
+                            <textarea class="min-h-32 w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-brand-ink placeholder:text-slate-400 focus:border-brand-accent/40 focus:outline-none focus:ring-4 focus:ring-brand-accent/10" id="description" name="description" maxlength="500" rows="4" placeholder="Describe origen, estilo, materiales o inspiración de la pieza"></textarea>
                         </div>
-                        <div class="col-md-8">
-                            <label class="form-label">Foto</label>
-                            <input class="form-control form-control-lg" type="file" name="photo" accept="image/*" required>
+                        <div class="sm:col-span-1">
+                            <label class="mb-2 block text-sm font-semibold text-brand-ink" for="photo">Foto</label>
+                            <input class="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-brand-ink file:mr-4 file:rounded-full file:border-0 file:bg-brand-cream file:px-4 file:py-2 file:text-sm file:font-semibold file:text-brand-ink hover:file:bg-brand-sand focus:border-brand-accent/40 focus:outline-none focus:ring-4 focus:ring-brand-accent/10" id="photo" type="file" name="photo" accept="image/*" required>
                         </div>
-                        <div class="col-md-4 d-grid align-self-end">
-                            <button class="btn btn-wood btn-lg rounded-pill py-3 fw-semibold" type="submit">Publicar pieza</button>
+                        <div class="sm:col-span-1 flex items-end">
+                            <button class="inline-flex w-full items-center justify-center rounded-full bg-gradient-to-r from-[#d9a372] to-[#8f5638] px-5 py-3 text-sm font-semibold text-white shadow-lg shadow-amber-900/10 transition hover:-translate-y-0.5 hover:from-[#e0af7d] hover:to-[#9a5e3c]" type="submit">Publicar pieza</button>
                         </div>
                     </form>
                 </div>
             </div>
         </section>
 
-        <section class="gallery-shell rounded-5 p-3 p-md-4 p-xl-5">
-            <div id="gallery" class="row g-4"></div>
+        <section class="rounded-3xl border border-slate-200/80 bg-white/80 p-4 shadow-soft backdrop-blur-xl sm:p-6 lg:p-8">
+            <div id="gallery" class="grid gap-3 sm:grid-cols-2 xl:grid-cols-4"></div>
         </section>
 
-        <footer class="pt-4 text-center">
-            <p class="footer-note mb-0">Andrea Casa de Arte. Piezas exclusivas con presencia, historia y caracter.</p>
+        <footer class="pt-6 text-center">
+            <p class="text-sm text-brand-soft">Andrea Casa de Arte. Piezas exclusivas con presencia, historia y carácter.</p>
         </footer>
     </main>
 
