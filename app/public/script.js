@@ -5,8 +5,6 @@ const featuredCounter = document.getElementById('featuredCounter');
 const featuredPrev = document.getElementById('featuredPrev');
 const featuredNext = document.getElementById('featuredNext');
 const gallery = document.getElementById('gallery');
-const adminToggle = document.getElementById('adminToggle');
-const adminPanel = document.getElementById('adminPanel');
 const imageModal = document.getElementById('imageModal');
 const imageModalClose = document.getElementById('imageModalClose');
 const imageModalImg = document.getElementById('imageModalImg');
@@ -18,15 +16,6 @@ const whatsappNumber = '573112910765';
 let featuredSlides = [];
 let featuredIndex = 0;
 let featuredTimer = null;
-
-// Toggle del panel de administración
-adminToggle.addEventListener('click', () => {
-    const opening = adminPanel.classList.contains('hidden');
-    adminPanel.classList.toggle('hidden');
-    adminPanel.setAttribute('aria-hidden', String(!opening));
-    adminToggle.setAttribute('aria-expanded', String(opening));
-    adminToggle.textContent = opening ? 'Ocultar gestión privada' : 'Gestión privada de piezas';
-});
 
 const stopFeaturedAutoplay = () => {
     if (featuredTimer) {
@@ -99,6 +88,85 @@ const getFeaturedViewportWidth = () => {
     return viewport ? viewport.clientWidth : 0;
 };
 
+const normalizeDiscount = (value) => {
+    const discount = Number(value);
+    if (!Number.isFinite(discount)) {
+        return 0;
+    }
+
+    return Math.min(100, Math.max(0, discount));
+};
+
+const getPricingData = (image) => {
+    const basePrice = Number(image.price);
+
+    if (!Number.isFinite(basePrice)) {
+        return {
+            hasPrice: false,
+            basePrice: null,
+            discount: 0,
+            finalPrice: null
+        };
+    }
+
+    const discount = normalizeDiscount(image.discount ?? 0);
+
+    return {
+        hasPrice: true,
+        basePrice,
+        discount,
+        finalPrice: discount > 0 ? basePrice * (1 - (discount / 100)) : basePrice
+    };
+};
+
+const buildPriceMarkup = (image, variant = 'card') => {
+    const pricing = getPricingData(image);
+
+    if (!pricing.hasPrice) {
+        return '';
+    }
+
+    const basePrice = escapeHtml(formatPrice(pricing.basePrice));
+    const finalPrice = escapeHtml(formatPrice(pricing.finalPrice));
+
+    if (pricing.discount > 0) {
+        const valueSize = variant === 'modal' ? 'text-base' : 'text-sm';
+        const labelSize = variant === 'modal' ? 'text-xs' : 'text-[10px]';
+
+        return `
+            <div class="space-y-2">
+                <div class="flex flex-wrap items-center gap-2">
+                    <span class="rounded-full border border-red-200 bg-red-50 px-3 py-1.5 text-xs font-semibold text-red-600 line-through">${basePrice}</span>
+                    <span class="rounded-full bg-red-600 px-2.5 py-1 font-bold uppercase tracking-[0.2em] text-white ${labelSize}">-${pricing.discount}%</span>
+                </div>
+                <div class="inline-flex rounded-full border border-emerald-200 bg-emerald-50 px-3 py-1.5 font-extrabold text-emerald-700 ${valueSize}">${finalPrice}</div>
+            </div>
+        `;
+    }
+
+    const textSize = variant === 'modal' ? 'text-base' : 'text-sm';
+
+    return `
+        <div class="inline-flex rounded-full border border-brand-accent/15 bg-gradient-to-r from-brand-accent/15 to-brand-sage/15 px-3 py-1.5 font-extrabold text-brand-ink ${textSize}">
+            ${basePrice}
+        </div>
+    `;
+};
+
+const buildDiscountBadge = (image) => {
+    const pricing = getPricingData(image);
+
+    if (!pricing.hasPrice || pricing.discount <= 0) {
+        return '';
+    }
+
+    return `
+        <div class="absolute left-3 top-3 rounded-full bg-red-600/95 px-3 py-1.5 text-xs font-extrabold uppercase tracking-[0.2em] text-white shadow-lg">
+            -${pricing.discount}% off
+        </div>
+    `;
+};
+
 const openImageModal = (image) => {
     if (!imageModal || !imageModalImg || !imageModalTitle || !imageModalPrice || !imageModalDescription) {
         return;
@@ -106,13 +174,13 @@ const openImageModal = (image) => {
 
     const title = image.title || image.original_name || 'Sin título';
     const description = image.description || 'Pieza disponible en la colección exclusiva de Andrea.';
-    const hasPrice = image.price !== null && image.price !== undefined;
+    const pricing = getPricingData(image);
 
     imageModalImg.src = `/uploads/${encodeURIComponent(image.filename)}`;
     imageModalImg.alt = title;
     imageModalTitle.textContent = title;
-    imageModalPrice.textContent = hasPrice ? formatPrice(image.price) : '';
-    imageModalPrice.classList.toggle('hidden', !hasPrice);
+    imageModalPrice.innerHTML = buildPriceMarkup(image, 'modal');
+    imageModalPrice.classList.toggle('hidden', !pricing.hasPrice);
     imageModalDescription.textContent = description;
 
     imageModal.classList.remove('hidden');
@@ -132,7 +200,7 @@ const closeImageModal = () => {
     imageModalImg.src = '';
     imageModalImg.alt = '';
     if (imageModalPrice) {
-        imageModalPrice.textContent = '';
+        imageModalPrice.innerHTML = '';
         imageModalPrice.classList.add('hidden');
     }
     document.body.classList.remove('overflow-hidden');
@@ -176,7 +244,12 @@ const formatPrice = (value) => {
 // Crear enlace de WhatsApp con icono
 const createWhatsappLink = (image) => {
     const productName = image.title || image.original_name || 'esta pieza';
-    const priceText = image.price !== null && image.price !== undefined ? ` por ${formatPrice(image.price)}` : '';
+    const pricing = getPricingData(image);
+    const priceText = pricing.hasPrice
+        ? (pricing.discount > 0
+            ? ` por ${formatPrice(pricing.finalPrice)} con ${pricing.discount}% de descuento`
+            : ` por ${formatPrice(pricing.basePrice)}`)
+        : '';
     const message = `Hola Andrea, me interesa ${productName}${priceText}.`;
 
     return `
@@ -285,69 +358,6 @@ const renderFeaturedSlider = (images) => {
     startFeaturedAutoplay();
 };
 
-// Eliminar imagen
-const deleteImage = (id) => {
-    const password = window.prompt('Contraseña para eliminar la foto:');
-
-    if (password === null) {
-        return;
-    }
-
-    const form = document.createElement('form');
-    form.method = 'post';
-    form.action = `/delete/${id}`;
-
-    const passwordInput = document.createElement('input');
-    passwordInput.type = 'hidden';
-    passwordInput.name = 'password';
-    passwordInput.value = password;
-
-    form.appendChild(passwordInput);
-    document.body.appendChild(form);
-    form.submit();
-};
-
-// Editar imagen
-const editImage = (image) => {
-    const password = window.prompt('Contraseña para editar la pieza:');
-    if (password === null) {
-        return;
-    }
-
-    const title = window.prompt('Nuevo título de la pieza:', image.title || image.original_name || '');
-    if (title === null) {
-        return;
-    }
-
-    const description = window.prompt('Nueva descripción:', image.description || '');
-    if (description === null) {
-        return;
-    }
-
-    const currentPrice = image.price !== null && image.price !== undefined ? String(image.price) : '';
-    const price = window.prompt('Nuevo precio:', currentPrice);
-    if (price === null) {
-        return;
-    }
-
-    const form = document.createElement('form');
-    form.method = 'post';
-    form.action = `/edit/${image.id}`;
-
-    const fields = { password, title, description, price };
-
-    Object.entries(fields).forEach(([name, value]) => {
-        const input = document.createElement('input');
-        input.type = 'hidden';
-        input.name = name;
-        input.value = value;
-        form.appendChild(input);
-    });
-
-    document.body.appendChild(form);
-    form.submit();
-};
-
 // Renderizar estado vacío
 const renderEmpty = () => {
     gallery.innerHTML = `
@@ -370,38 +380,23 @@ const renderImages = (images) => {
     gallery.innerHTML = images.map((image) => `
         <article class="group flex h-full flex-col overflow-hidden rounded-[1.5rem] border border-slate-200 bg-white shadow-glow transition duration-200 hover:-translate-y-1 hover:border-brand-accent/25 hover:shadow-soft">
             <div class="relative overflow-hidden">
+                ${buildDiscountBadge(image)}
                 <button class="block w-full cursor-zoom-in" type="button" data-modal-image data-id="${image.id}" aria-label="Ampliar ${escapeHtml(image.title || image.original_name || 'foto de galería')}">
-                    <img class="aspect-[3/4] w-full object-cover bg-slate-100 transition duration-500 group-hover:scale-[1.02]" src="/uploads/${encodeURIComponent(image.filename)}" alt="${escapeHtml(image.title || image.original_name || 'Foto de galería')}">
+                    <img class="aspect-[3/4] w-full object-cover bg-slate-100 transition duration-500 group-hover:scale-[1.01]" src="/uploads/${encodeURIComponent(image.filename)}" alt="${escapeHtml(image.title || image.original_name || 'Foto de galería')}">
                 </button>
                 <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-transparent opacity-0 transition duration-300 group-hover:opacity-100"></div>
             </div>
             <div class="flex flex-1 flex-col p-4">
                 <h3 class="font-display text-2xl font-semibold leading-tight text-brand-ink">${escapeHtml(image.title || image.original_name || 'Sin título')}</h3>
                 <p class="mt-2 text-sm leading-6 text-brand-text">${escapeHtml(image.description || 'Pieza disponible en la colección exclusiva de Andrea.')}</p>
-                ${image.price !== null && image.price !== undefined ? `<div class="mt-3 inline-flex self-start rounded-full border border-brand-accent/15 bg-gradient-to-r from-brand-accent/15 to-brand-sage/15 px-3 py-1.5 text-xs font-extrabold text-brand-ink">${escapeHtml(formatPrice(image.price))}</div>` : ''}
+                <div class="mt-3">${buildPriceMarkup(image, 'card')}</div>
                 <div class="mt-3 text-xs text-slate-400">${formatDate(image.created_at)}</div>
                 <div class="mt-auto flex items-center gap-3 pt-4">
                     ${createWhatsappLink(image)}
-                    <button class="edit-button inline-flex items-center justify-center p-1 text-blue-600 transition hover:-translate-y-0.5 hover:text-blue-700" type="button" data-id="${image.id}" aria-label="Editar pieza" title="Editar pieza">
-                        <i class="fa-solid fa-pen-to-square text-2xl" aria-hidden="true"></i>
-                    </button>
-                    <button class="delete-button inline-flex items-center justify-center p-1 text-red-600 transition hover:-translate-y-0.5 hover:text-red-700" type="button" data-id="${image.id}" aria-label="Eliminar pieza" title="Eliminar pieza">
-                        <i class="fa-solid fa-trash-can text-2xl" aria-hidden="true"></i>
-                    </button>
                 </div>
             </div>
         </article>
     `).join('');
-
-    // Delegación de eventos para botones de editar y eliminar
-    gallery.querySelectorAll('.edit-button').forEach((button) => {
-        const image = images.find((item) => String(item.id) === button.dataset.id);
-        button.addEventListener('click', () => editImage(image));
-    });
-
-    gallery.querySelectorAll('.delete-button').forEach((button) => {
-        button.addEventListener('click', () => deleteImage(button.dataset.id));
-    });
 
     gallery.querySelectorAll('[data-modal-image]').forEach((button) => {
         const image = images.find((item) => String(item.id) === button.dataset.id);

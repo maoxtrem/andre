@@ -132,51 +132,11 @@
                     Colección destacada
                 </span>
                 <h2 class="mt-3 font-display text-4xl font-semibold tracking-[-0.02em] text-brand-ink sm:text-5xl">Obras disponibles</h2>
-                <p class="mt-3 max-w-2xl text-base leading-7 text-brand-text">La galería es el centro de la experiencia. Andrea administra sus piezas de forma discreta cuando lo necesita.</p>
+                <p class="mt-3 max-w-2xl text-base leading-7 text-brand-text">La galería sigue siendo la protagonista. Si necesitas administrar el inventario, puedes entrar al dashboard privado.</p>
             </div>
-            <div class="flex justify-end">
-                <button id="adminToggle" class="inline-flex items-center justify-center rounded-full border border-slate-200 bg-white px-5 py-3 text-sm font-semibold text-brand-ink shadow-glow transition hover:-translate-y-0.5 hover:border-brand-accent/30 hover:bg-brand-cream" type="button" aria-expanded="false">
-                    Gestión privada de piezas
-                </button>
-            </div>
-        </section>
-
-        <section id="adminPanel" class="mb-5 hidden rounded-3xl border border-slate-200/80 bg-white/80 p-6 shadow-soft backdrop-blur-xl lg:p-10" aria-hidden="true">
-            <div class="grid gap-8 lg:grid-cols-5 lg:items-start">
-                <div class="lg:col-span-2">
-                    <span class="inline-flex items-center gap-3 text-xs font-extrabold uppercase tracking-[0.28em] text-brand-sage">
-                        <span class="h-px w-10 bg-gradient-to-r from-brand-sage to-transparent"></span>
-                        Acceso privado
-                    </span>
-                    <h3 class="mt-3 font-display text-3xl font-semibold text-brand-ink sm:text-4xl">Agregar una nueva pieza</h3>
-                    <p class="mt-4 max-w-md text-base leading-7 text-brand-text">
-                        Este espacio queda oculto para que la vitrina visual conserve todo el protagonismo.
-                    </p>
-                </div>
-                <div class="lg:col-span-3">
-                    <form action="/upload" method="post" enctype="multipart/form-data" class="grid gap-4 sm:grid-cols-2">
-                        <div class="sm:col-span-1">
-                            <label class="mb-2 block text-sm font-semibold text-brand-ink" for="title">Título</label>
-                            <input class="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-brand-ink placeholder:text-slate-400 focus:border-brand-accent/40 focus:outline-none focus:ring-4 focus:ring-brand-accent/10" id="title" type="text" name="title" maxlength="120" placeholder="Ej. Escultura en madera tallada">
-                        </div>
-                        <div class="sm:col-span-1">
-                            <label class="mb-2 block text-sm font-semibold text-brand-ink" for="price">Precio</label>
-                            <input class="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-brand-ink placeholder:text-slate-400 focus:border-brand-accent/40 focus:outline-none focus:ring-4 focus:ring-brand-accent/10" id="price" type="text" name="price" inputmode="decimal" maxlength="20" placeholder="Ej. 120000">
-                        </div>
-                        <div class="sm:col-span-2">
-                            <label class="mb-2 block text-sm font-semibold text-brand-ink" for="description">Descripción</label>
-                            <textarea class="min-h-32 w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-brand-ink placeholder:text-slate-400 focus:border-brand-accent/40 focus:outline-none focus:ring-4 focus:ring-brand-accent/10" id="description" name="description" maxlength="500" rows="4" placeholder="Describe origen, estilo, materiales o inspiración de la pieza"></textarea>
-                        </div>
-                        <div class="sm:col-span-1">
-                            <label class="mb-2 block text-sm font-semibold text-brand-ink" for="photo">Foto</label>
-                            <input class="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-brand-ink file:mr-4 file:rounded-full file:border-0 file:bg-brand-cream file:px-4 file:py-2 file:text-sm file:font-semibold file:text-brand-ink hover:file:bg-brand-sand focus:border-brand-accent/40 focus:outline-none focus:ring-4 focus:ring-brand-accent/10" id="photo" type="file" name="photo" accept="image/*" required>
-                        </div>
-                        <div class="sm:col-span-1 flex items-end">
-                            <button class="inline-flex w-full items-center justify-center rounded-full bg-gradient-to-r from-[#d9a372] to-[#8f5638] px-5 py-3 text-sm font-semibold text-white shadow-lg shadow-amber-900/10 transition hover:-translate-y-0.5 hover:from-[#e0af7d] hover:to-[#9a5e3c]" type="submit">Publicar pieza</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
+            <a href="/dashboard" class="inline-flex items-center justify-center rounded-full border border-slate-200 bg-white px-5 py-3 text-sm font-semibold text-brand-ink shadow-glow transition hover:-translate-y-0.5 hover:border-brand-accent/30 hover:bg-brand-cream">
+                Ir al dashboard
+            </a>
         </section>
 
         <section class="rounded-3xl border border-slate-200/80 bg-white/80 p-4 shadow-soft backdrop-blur-xl sm:p-6 lg:p-8">
@@ -196,7 +156,7 @@
                         <div class="max-w-xl">
                             <p class="text-xs font-extrabold uppercase tracking-[0.28em] text-brand-accent">Vista ampliada</p>
                             <h3 id="imageModalTitle" class="mt-3 font-display text-4xl font-semibold leading-tight text-brand-ink sm:text-5xl"></h3>
-                            <div id="imageModalPrice" class="mt-4 hidden inline-flex rounded-full border border-brand-accent/15 bg-gradient-to-r from-brand-accent/15 to-brand-sage/15 px-4 py-2 text-sm font-extrabold text-brand-ink"></div>
+                            <div id="imageModalPrice" class="mt-4 hidden space-y-2"></div>
                             <p id="imageModalDescription" class="mt-5 text-base leading-8 text-brand-text"></p>
                         </div>
                     </div>
