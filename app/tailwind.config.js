@@ -1,20 +1,23 @@
+const path = require('path');
+
 module.exports = {
-    content: ['./public/**/*.{html,js}'],
+    content: [path.join(__dirname, 'public/**/*.{html,js}')],
     theme: {
         extend: {
             fontFamily: {
                 sans: ['Manrope', 'sans-serif'],
-                display: ['Cormorant Garamond', 'serif']
+                display: ['Cormorant Garamond', 'serif'],
+                script: ['Great Vibes', 'cursive']
             },
             colors: {
                 brand: {
-                    cream: '#fcfaf6',
-                    sand: '#f5efe5',
-                    ink: '#24323c',
-                    text: '#586771',
-                    soft: '#7a8790',
-                    accent: '#c98f5c',
-                    sage: '#7fa594'
+                    cream: '#f7efe3',
+                    sand: '#efe2d2',
+                    ink: '#4a3728',
+                    text: '#6f5a45',
+                    soft: '#8a7460',
+                    accent: '#8b5e3c',
+                    sage: '#6f7b4d'
                 }
             },
             boxShadow: {

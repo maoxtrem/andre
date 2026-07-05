@@ -3,17 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Andrea Casa de Arte | Galería en línea</title>
+    <title>Bohemian Collections | Accesorios con esencia bohemia</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Great+Vibes&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        (function () {
+            try {
+                const storedTheme = localStorage.getItem('bohemian-theme');
+                const preferredTheme = storedTheme === 'dark' || storedTheme === 'light'
+                    ? storedTheme
+                    : (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+                document.documentElement.setAttribute('data-theme', preferredTheme);
+            } catch (error) {
+                document.documentElement.setAttribute('data-theme', 'light');
+            }
+        }());
+    </script>
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="tailwind.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
 <body class="min-h-screen overflow-x-hidden bg-brand-cream font-sans text-brand-ink antialiased selection:bg-brand-accent/20 selection:text-brand-ink">
-    <main class="relative mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8 lg:py-8">
+    <div aria-hidden="true" class="page-watermark"></div>
+    <main class="relative z-10 mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8 lg:py-8">
         <div aria-hidden="true" class="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
             <div class="absolute -left-24 top-12 h-72 w-72 rounded-full bg-brand-accent/20 blur-3xl"></div>
             <div class="absolute right-0 top-0 h-80 w-80 rounded-full bg-brand-sage/20 blur-3xl"></div>
@@ -23,28 +36,37 @@
         <section class="mb-5 overflow-hidden rounded-3xl border border-slate-200/80 bg-white/80 shadow-soft backdrop-blur-xl">
             <div class="grid lg:grid-cols-5">
                 <div class="p-6 sm:p-8 lg:col-span-3 lg:p-10">
+                    <div class="mb-5 flex justify-end">
+                        <button type="button" data-theme-toggle class="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-2 text-xs font-semibold text-brand-ink shadow-glow transition hover:-translate-y-0.5 hover:border-brand-accent/30 hover:bg-brand-cream" aria-label="Tema oscuro">
+                            <span class="inline-flex h-2 w-2 rounded-full bg-brand-accent"></span>
+                            <span data-theme-label>Oscuro</span>
+                        </button>
+                    </div>
+                    <div class="inline-flex items-center justify-center rounded-[2rem] border border-slate-200/80 bg-white p-3 shadow-soft">
+                        <img src="/img/logo.png" alt="Bohemian Collections" class="h-20 w-20 rounded-full object-cover sm:h-24 sm:w-24">
+                    </div>
                     <span class="inline-flex items-center gap-3 text-xs font-extrabold uppercase tracking-[0.28em] text-brand-accent">
                         <span class="h-px w-10 bg-gradient-to-r from-brand-accent to-transparent"></span>
-                        Andrea Casa de Arte
+                        Bohemian Collections
                     </span>
-                    <h1 class="mt-5 max-w-3xl font-display text-5xl font-semibold leading-[0.9] tracking-[-0.03em] text-brand-ink sm:text-6xl lg:text-7xl">
-                        Piezas únicas y exclusivas que elevan espacios con arte, presencia y personalidad.
+                    <h1 class="hero-title mt-5 max-w-4xl font-display text-3xl leading-[1.08] tracking-[0.01em] text-brand-ink sm:text-4xl lg:text-5xl">
+                        Accesorios bohemios que unen naturaleza, autenticidad y estilo en cada detalle.
                     </h1>
                     <p class="mt-6 max-w-2xl text-lg leading-8 text-brand-text sm:text-xl">
-                        Andrea presenta una selección curada de obras para clientes que buscan una experiencia visual limpia, sofisticada y comercial sin perder el alma artística de cada pieza.
+                        Descubre una colección de collares, pulseras y complementos cuidadosamente seleccionados para expresar tu personalidad con piezas únicas.
                     </p>
                     <div class="mt-8 grid gap-4 md:grid-cols-3">
                         <div class="rounded-2xl border border-slate-200/80 bg-white/80 p-4 shadow-glow">
-                            <strong class="block text-base font-bold text-brand-ink">Curaduría exclusiva</strong>
-                            <span class="mt-1 block text-sm leading-6 text-brand-text">Obras con identidad propia</span>
+                            <strong class="block text-base font-bold text-brand-ink">Esencia bohemia</strong>
+                            <span class="mt-1 block text-sm leading-6 text-brand-text">Detalles con autenticidad</span>
                         </div>
                         <div class="rounded-2xl border border-slate-200/80 bg-white/80 p-4 shadow-glow">
-                            <strong class="block text-base font-bold text-brand-ink">Estética contemporánea</strong>
-                            <span class="mt-1 block text-sm leading-6 text-brand-text">Acabados limpios y memorables</span>
+                            <strong class="block text-base font-bold text-brand-ink">Naturaleza y estilo</strong>
+                            <span class="mt-1 block text-sm leading-6 text-brand-text">Tonos cálidos y orgánicos</span>
                         </div>
                         <div class="rounded-2xl border border-slate-200/80 bg-white/80 p-4 shadow-glow">
-                            <strong class="block text-base font-bold text-brand-ink">Atención personal</strong>
-                            <span class="mt-1 block text-sm leading-6 text-brand-text">Contacto directo para cada interés</span>
+                            <strong class="block text-base font-bold text-brand-ink">Hecho para ti</strong>
+                            <span class="mt-1 block text-sm leading-6 text-brand-text">Piezas versátiles y únicas</span>
                         </div>
                     </div>
                 </div>
@@ -52,18 +74,18 @@
                 <div class="border-t border-slate-200/70 bg-gradient-to-b from-white/90 to-brand-sand/60 p-6 sm:p-8 lg:col-span-2 lg:border-l lg:border-t-0 lg:p-10">
                     <div class="flex h-full flex-col justify-between gap-10">
                         <div>
-                            <p class="text-xs font-extrabold uppercase tracking-[0.28em] text-brand-sage">Colección de autor</p>
+                            <p class="text-xs font-extrabold uppercase tracking-[0.28em] text-brand-sage">Colección bohemia</p>
                             <h2 class="mt-4 font-display text-4xl leading-tight text-brand-ink sm:text-5xl">
-                                Una galería luminosa, sofisticada y centrada por completo en la obra.
+                                Una vitrina cálida y artesanal para accesorios con carácter.
                             </h2>
-                            <p class="mt-4 text-base leading-7 text-brand-text">
-                                Tonos claros, textura suave y una atmósfera editorial para que cada imagen se sienta más premium y accesible.
+                            <p class="mt-4 text-lg leading-8 text-brand-text sm:text-xl">
+                                Bienvenido a Bohemian Collections. Descubre una colección de accesorios inspirados en la esencia bohemia, la naturaleza y el estilo auténtico. Cada pieza combina elegancia, versatilidad y un toque artesanal para acompañarte en cualquier ocasión.
                             </p>
                         </div>
                         <div class="flex flex-wrap gap-2">
-                            <span class="rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-brand-ink shadow-glow">Piezas irrepetibles</span>
-                            <span class="rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-brand-ink shadow-glow">Arte exclusivo</span>
-                            <span class="rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-brand-ink shadow-glow">Consulta directa</span>
+                            <span class="rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-brand-ink shadow-glow">Collares</span>
+                            <span class="rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-brand-ink shadow-glow">Pulseras</span>
+                            <span class="rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-brand-ink shadow-glow">Complementos</span>
                         </div>
                     </div>
                 </div>
@@ -75,17 +97,17 @@
                 <div>
                     <span class="inline-flex items-center gap-3 text-xs font-extrabold uppercase tracking-[0.28em] text-brand-accent">
                         <span class="h-px w-10 bg-gradient-to-r from-brand-accent to-transparent"></span>
-                        Selección aleatoria
+                        Piezas destacadas
                     </span>
-                    <h2 class="mt-3 font-display text-4xl font-semibold tracking-[-0.02em] text-brand-ink sm:text-5xl">Cinco piezas cambian en cada visita</h2>
-                    <p class="mt-3 max-w-2xl text-base leading-7 text-brand-text">El carrusel se arma al azar cada vez que se carga la página para que la portada se sienta más viva y menos estática.</p>
+                    <h2 class="mt-3 font-display text-4xl font-semibold tracking-[-0.02em] text-brand-ink sm:text-5xl">Una selección que se renueva con cada visita</h2>
+                    <p class="mt-3 max-w-2xl text-base leading-7 text-brand-text">Descubre cinco accesorios elegidos para resaltar detalles, texturas y la esencia de la colección.</p>
                 </div>
                 <div class="flex items-center gap-2">
                     <button id="featuredPrev" class="inline-flex h-11 w-11 items-center justify-center rounded-full border border-slate-200 bg-white text-brand-ink shadow-glow transition hover:-translate-y-0.5 hover:border-brand-accent/30 hover:bg-brand-cream" type="button" aria-label="Anterior">
-                        <i class="fa-solid fa-chevron-left text-sm"></i>
+                        <span class="inline-flex" data-icon="chevronLeft" aria-hidden="true"></span>
                     </button>
                     <button id="featuredNext" class="inline-flex h-11 w-11 items-center justify-center rounded-full border border-slate-200 bg-white text-brand-ink shadow-glow transition hover:-translate-y-0.5 hover:border-brand-accent/30 hover:bg-brand-cream" type="button" aria-label="Siguiente">
-                        <i class="fa-solid fa-chevron-right text-sm"></i>
+                        <span class="inline-flex" data-icon="chevronRight" aria-hidden="true"></span>
                     </button>
                 </div>
             </div>
@@ -104,11 +126,11 @@
                     <span class="h-px w-10 bg-gradient-to-r from-brand-accent to-transparent"></span>
                     Colección destacada
                 </span>
-                <h2 class="mt-3 font-display text-4xl font-semibold tracking-[-0.02em] text-brand-ink sm:text-5xl">Obras disponibles</h2>
-                <p class="mt-3 max-w-2xl text-base leading-7 text-brand-text">La galería sigue siendo la protagonista. Si necesitas administrar el inventario, puedes entrar al dashboard privado.</p>
+                <h2 class="mt-3 font-display text-4xl font-semibold tracking-[-0.02em] text-brand-ink sm:text-5xl">Colección disponible</h2>
+                <p class="mt-3 max-w-2xl text-base leading-7 text-brand-text">Explora piezas únicas pensadas para acompañar tu estilo con una esencia bohemia y natural.</p>
             </div>
             <a href="/dashboard" class="inline-flex items-center justify-center rounded-full border border-slate-200 bg-white px-5 py-3 text-sm font-semibold text-brand-ink shadow-glow transition hover:-translate-y-0.5 hover:border-brand-accent/30 hover:bg-brand-cream">
-                Ir al dashboard
+                Ir al panel
             </a>
         </section>
 
@@ -119,7 +141,7 @@
         <div id="imageModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-950/70 px-4 py-6 backdrop-blur-sm" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="imageModalTitle">
             <div class="relative w-full max-w-5xl overflow-hidden rounded-3xl border border-white/10 bg-white shadow-soft">
                 <button id="imageModalClose" class="absolute right-4 top-4 inline-flex h-11 w-11 items-center justify-center rounded-full bg-white/90 text-slate-700 shadow-lg transition hover:-translate-y-0.5 hover:bg-white" type="button" aria-label="Cerrar modal">
-                    <i class="fa-solid fa-xmark text-lg" aria-hidden="true"></i>
+                    <span class="inline-flex" data-icon="close" aria-hidden="true"></span>
                 </button>
                 <div class="grid lg:grid-cols-2">
                     <div class="flex items-center justify-center bg-gradient-to-br from-brand-cream to-brand-sand/60 p-4 sm:p-6 lg:min-h-[32rem]">
@@ -138,10 +160,12 @@
         </div>
 
         <footer class="pt-6 text-center">
-            <p class="text-sm text-brand-soft">Andrea Casa de Arte. Piezas exclusivas con presencia, historia y carácter.</p>
+            <p class="text-sm text-brand-soft">Bohemian Collections. Accesorios con esencia natural, estilo y autenticidad.</p>
         </footer>
     </main>
 
+    <script src="theme.js"></script>
+    <script src="icons.js"></script>
     <script src="script.js"></script>
 </body>
 </html>

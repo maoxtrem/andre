@@ -173,7 +173,7 @@ const openImageModal = (image) => {
     }
 
     const title = image.title || image.original_name || 'Sin título';
-    const description = image.description || 'Pieza disponible en la colección exclusiva de Andrea.';
+    const description = image.description || 'Pieza disponible en la colección de Bohemian Collections.';
     const pricing = getPricingData(image);
 
     imageModalImg.src = `/uploads/${encodeURIComponent(image.filename)}`;
@@ -250,14 +250,14 @@ const createWhatsappLink = (image) => {
             ? ` por ${formatPrice(pricing.finalPrice)} con ${pricing.discount}% de descuento`
             : ` por ${formatPrice(pricing.basePrice)}`)
         : '';
-    const message = `Hola Andrea, me interesa ${productName}${priceText}.`;
+    const message = `Hola, me interesa ${productName}${priceText}.`;
 
     return `
         <a class="inline-flex items-center justify-center p-1 text-emerald-600 transition hover:-translate-y-0.5 hover:text-emerald-700"
            href="https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}"
            target="_blank"
            rel="noreferrer">
-            <i class="fa-brands fa-whatsapp text-2xl" aria-hidden="true"></i>
+            ${window.appIcons?.whatsapp || ''}
             <span class="sr-only">Preguntar por WhatsApp</span>
         </a>
     `;
@@ -272,9 +272,9 @@ const renderFeaturedEmpty = () => {
         <div class="min-w-full shrink-0 p-4 sm:p-6">
             <div class="flex min-h-[22rem] items-center justify-center rounded-[1.75rem] border border-dashed border-slate-300 bg-white/85 p-8 text-center">
                 <div class="max-w-xl">
-                    <p class="text-xs font-extrabold uppercase tracking-[0.28em] text-brand-sage">Selección aleatoria</p>
+                    <p class="text-xs font-extrabold uppercase tracking-[0.28em] text-brand-sage">Selección bohemia</p>
                     <h3 class="mt-3 font-display text-3xl font-semibold text-brand-ink sm:text-4xl">Aún no hay piezas para destacar</h3>
-                    <p class="mt-3 text-sm leading-7 text-brand-text">Cuando subas imágenes, aquí aparecerán cinco piezas elegidas al azar en cada carga.</p>
+                    <p class="mt-3 text-sm leading-7 text-brand-text">Cuando subas productos, aquí aparecerán cinco piezas elegidas al azar en cada carga.</p>
                 </div>
             </div>
         </div>
@@ -315,8 +315,8 @@ const renderFeaturedSlider = (images) => {
                 </div>
                 <div class="flex h-full items-center bg-white p-6 sm:p-8 lg:p-10">
                     <div class="max-w-xl">
-                        <h3 class="font-display text-4xl font-semibold leading-tight text-brand-ink sm:text-5xl">${escapeHtml(image.title || image.original_name || 'Sin título')}</h3>
-                        <p class="mt-5 text-base leading-8 text-brand-text">${escapeHtml(image.description || 'Pieza disponible en la colección exclusiva de Andrea.')}</p>
+                        <h3 class="featured-slide-title font-display text-4xl font-semibold leading-tight text-brand-ink sm:text-5xl">${escapeHtml(image.title || image.original_name || 'Sin título')}</h3>
+                        <p class="mt-5 text-base leading-8 text-brand-text">${escapeHtml(image.description || 'Pieza disponible en la colección de Bohemian Collections.')}</p>
                     </div>
                 </div>
             </div>
@@ -364,7 +364,7 @@ const renderEmpty = () => {
         <div class="sm:col-span-2 xl:col-span-3">
             <div class="mx-auto max-w-2xl rounded-[1.75rem] border border-dashed border-slate-300 bg-gradient-to-b from-white to-brand-sand/70 p-10 text-center shadow-sm">
                 <h3 class="font-display text-3xl font-semibold text-brand-ink sm:text-4xl">La colección aún no ha sido publicada</h3>
-                <p class="mt-3 text-sm leading-7 text-brand-text">Pronto aparecerán aquí las piezas exclusivas seleccionadas por Andrea.</p>
+                <p class="mt-3 text-sm leading-7 text-brand-text">Pronto aparecerán aquí los accesorios seleccionados para Bohemian Collections.</p>
             </div>
         </div>
     `;
@@ -388,7 +388,7 @@ const renderImages = (images) => {
             </div>
             <div class="flex flex-1 flex-col p-4">
                 <h3 class="font-display text-2xl font-semibold leading-tight text-brand-ink">${escapeHtml(image.title || image.original_name || 'Sin título')}</h3>
-                <p class="mt-2 text-sm leading-6 text-brand-text">${escapeHtml(image.description || 'Pieza disponible en la colección exclusiva de Andrea.')}</p>
+                <p class="mt-2 text-sm leading-6 text-brand-text">${escapeHtml(image.description || 'Pieza disponible en la colección de Bohemian Collections.')}</p>
                 <div class="mt-3">${buildPriceMarkup(image, 'card')}</div>
                 <div class="mt-3 text-xs text-slate-400">${formatDate(image.created_at)}</div>
                 <div class="mt-auto flex items-center gap-3 pt-4">

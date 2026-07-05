@@ -158,7 +158,7 @@ const openModal = (mode, image = null) => {
         modalFormPanel.classList.add('hidden');
 
         const title = image?.title || image?.original_name || 'Sin título';
-        const description = image?.description || 'Pieza disponible en la colección exclusiva de Andrea.';
+        const description = image?.description || 'Pieza disponible en la colección de Bohemian Collections.';
         const pricing = getPricingData(image || {});
 
         modalTitle.textContent = title;
@@ -186,8 +186,8 @@ const openModal = (mode, image = null) => {
         }
 
         imageForm.action = mode === 'edit' && image ? `/edit/${image.id}` : '/upload';
-        modalTitle.textContent = mode === 'edit' ? 'Editar pieza' : 'Nueva pieza';
-        saveButton.textContent = mode === 'edit' ? 'Guardar cambios' : 'Publicar pieza';
+        modalTitle.textContent = mode === 'edit' ? 'Editar accesorio' : 'Nuevo accesorio';
+        saveButton.textContent = mode === 'edit' ? 'Guardar cambios' : 'Publicar producto';
         formPhoto.required = mode !== 'edit';
 
         formTitle.value = image?.title || '';
@@ -260,10 +260,10 @@ const buildRow = (image) => {
                 ${isAuthenticated ? `
                     <div class="inline-flex items-center gap-2">
                         <button type="button" class="inline-flex items-center justify-center text-blue-600 transition hover:-translate-y-0.5 hover:text-blue-700" data-edit-image data-id="${image.id}" aria-label="Editar">
-                            <i class="fa-solid fa-pen-to-square text-xl" aria-hidden="true"></i>
+                            ${window.appIcons?.edit || ''}
                         </button>
                         <button type="button" class="inline-flex items-center justify-center text-red-600 transition hover:-translate-y-0.5 hover:text-red-700" data-delete-image data-id="${image.id}" aria-label="Eliminar">
-                            <i class="fa-solid fa-trash-can text-xl" aria-hidden="true"></i>
+                            ${window.appIcons?.trash || ''}
                         </button>
                     </div>
                 ` : '<span class="inline-flex rounded-full border border-slate-200 bg-brand-cream px-3 py-1.5 text-xs font-semibold text-brand-soft">Bloqueado</span>'}
@@ -361,7 +361,7 @@ const loadImages = async () => {
         if (dashboardStatus) {
             dashboardStatus.textContent = currentImages.length
                 ? 'Puedes editar o borrar cualquier fila desde aquí.'
-                : 'No hay registros todavía. Usa "Nueva pieza" para crear el primero.';
+                : 'No hay registros todavía. Usa "Nuevo accesorio" para crear el primero.';
         }
     } catch (error) {
         if (dashboardStatus) {

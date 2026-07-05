@@ -1,1 +1,155 @@
 /* Custom overrides that stay outside the generated Tailwind bundle. */
+
+.hero-title {
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.45), 0 0 18px rgba(139, 94, 60, 0.14);
+}
+
+.featured-slide-title {
+    font-family: "Great Vibes", cursive;
+    font-weight: 400;
+    font-style: normal;
+    letter-spacing: 0;
+    line-height: 0.95;
+}
+
+.page-watermark {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background-image: url('/img/logo.png');
+    background-repeat: no-repeat;
+    background-position: center 42%;
+    background-size: min(88vw, 56rem);
+    opacity: 0.09;
+    filter: saturate(0.95) contrast(1.02) drop-shadow(0 0 28px rgba(139, 94, 60, 0.18));
+}
+
+html[data-theme="dark"] {
+    color-scheme: dark;
+}
+
+html[data-theme="dark"] body {
+    background-color: #0f1110;
+    color: #f6efe4;
+}
+
+html[data-theme="dark"] body {
+    color: #f6efe4;
+}
+
+html[data-theme="dark"] .page-watermark {
+    opacity: 0.06;
+    filter: grayscale(1) brightness(1.2) contrast(0.9) drop-shadow(0 0 24px rgba(255, 255, 255, 0.06));
+}
+
+html[data-theme="dark"] body p,
+html[data-theme="dark"] body h1,
+html[data-theme="dark"] body h2,
+html[data-theme="dark"] body h3,
+html[data-theme="dark"] body h4,
+html[data-theme="dark"] body h5,
+html[data-theme="dark"] body h6,
+html[data-theme="dark"] body span,
+html[data-theme="dark"] body label,
+html[data-theme="dark"] body th,
+html[data-theme="dark"] body td,
+html[data-theme="dark"] body strong,
+html[data-theme="dark"] body a,
+html[data-theme="dark"] body button,
+html[data-theme="dark"] body input,
+html[data-theme="dark"] body textarea,
+html[data-theme="dark"] body select {
+    color: #f6efe4;
+}
+
+html[data-theme="dark"] .bg-brand-cream {
+    background-color: #111412;
+}
+
+html[data-theme="dark"] .bg-brand-sand\/40 {
+    background-color: rgba(255, 255, 255, 0.04);
+}
+
+html[data-theme="dark"] .bg-brand-sand\/60 {
+    background-color: rgba(255, 255, 255, 0.06);
+}
+
+html[data-theme="dark"] .bg-brand-sand\/70 {
+    background-color: rgba(255, 255, 255, 0.07);
+}
+
+html[data-theme="dark"] .bg-white,
+html[data-theme="dark"] .bg-white\/80,
+html[data-theme="dark"] .bg-white\/85,
+html[data-theme="dark"] .bg-white\/90 {
+    background-color: rgba(20, 23, 22, 0.92);
+}
+
+html[data-theme="dark"] .border-slate-200,
+html[data-theme="dark"] .border-slate-200\/70,
+html[data-theme="dark"] .border-slate-200\/80,
+html[data-theme="dark"] .border-slate-300 {
+    border-color: rgba(255, 255, 255, 0.10);
+}
+
+html[data-theme="dark"] .text-brand-ink {
+    color: #f6efe4;
+}
+
+html[data-theme="dark"] .text-brand-text {
+    color: #c8b39a;
+}
+
+html[data-theme="dark"] .text-brand-soft {
+    color: #b19c84;
+}
+
+html[data-theme="dark"] .text-slate-400,
+html[data-theme="dark"] .text-slate-700 {
+    color: #d6c9ba;
+}
+
+html[data-theme="dark"] .shadow-soft,
+html[data-theme="dark"] .shadow-glow,
+html[data-theme="dark"] .shadow-sm,
+html[data-theme="dark"] .shadow-lg {
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
+}
+
+html[data-theme="dark"] .bg-brand-accent\/20 {
+    background-color: rgba(139, 94, 60, 0.35);
+}
+
+html[data-theme="dark"] .bg-brand-accent\/10 {
+    background-color: rgba(139, 94, 60, 0.18);
+}
+
+html[data-theme="dark"] .bg-brand-sage\/20 {
+    background-color: rgba(111, 123, 77, 0.20);
+}
+
+html[data-theme="dark"] .from-white,
+html[data-theme="dark"] .from-white\/90 {
+    --tw-gradient-from: rgba(22, 25, 24, 0.95) var(--tw-gradient-from-position);
+    --tw-gradient-to: rgba(22, 25, 24, 0) var(--tw-gradient-to-position);
+}
+
+html[data-theme="dark"] .to-white,
+html[data-theme="dark"] .to-white\/90 {
+    --tw-gradient-to: rgba(22, 25, 24, 0.95) var(--tw-gradient-to-position);
+}
+
+html[data-theme="dark"] .to-brand-sand\/60,
+html[data-theme="dark"] .to-brand-sand\/70 {
+    --tw-gradient-to: rgba(42, 45, 44, 0.95) var(--tw-gradient-to-position);
+}
+
+html[data-theme="dark"] .from-brand-cream {
+    --tw-gradient-from: #1a1d1b var(--tw-gradient-from-position);
+    --tw-gradient-to: rgba(26, 29, 27, 0) var(--tw-gradient-to-position);
+}
+
+html[data-theme="dark"] .bg-slate-950\/70 {
+    background-color: rgba(0, 0, 0, 0.82);
+}
