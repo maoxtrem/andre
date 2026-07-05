@@ -121,6 +121,10 @@ app.use(express.static(publicDir));
 // Servir la carpeta de subidas para que se vean las fotos
 app.use('/uploads', express.static('/uploads'));
 
+app.get('/favicon.ico', (req, res) => {
+    res.status(204).end();
+});
+
 app.get('/dashboard', (req, res) => {
     res.sendFile(path.join(publicDir, 'dashboard.html'));
 });

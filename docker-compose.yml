@@ -7,7 +7,7 @@ services:
       - ./app:/app
       - ./uploads:/uploads
       - ./data:/data
-    command: sh -c "npm install better-sqlite3 express multer && node server.js"
+    command: sh -c "npm install && npm run build:css && node server.js"
     restart: always
     expose:
       - "3000"

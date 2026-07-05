@@ -1,6 +1,1 @@
-/* Tailwind-first UI.
-   This file is intentionally minimal and reserved for small custom tweaks. */
-
-html {
-    scroll-behavior: smooth;
-}
+/* Custom overrides that stay outside the generated Tailwind bundle. */

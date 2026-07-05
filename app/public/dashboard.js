@@ -235,28 +235,28 @@ const buildRow = (image) => {
     const finalPrice = pricing.hasPrice ? formatPrice(pricing.finalPrice) : '';
 
     return `
-        <tr class="overflow-hidden rounded-[1.5rem] border border-slate-200 bg-white shadow-glow">
-            <td class="px-4 py-4 align-middle">
+        <tr class="group">
+            <td class="rounded-l-[1.5rem] border-y border-l border-slate-200 bg-white px-4 py-4 align-middle shadow-glow">
                 <button type="button" class="group block overflow-hidden rounded-2xl border border-slate-200 bg-brand-cream" data-preview-image data-id="${image.id}" aria-label="Ver imagen ${title}">
                     <img src="${thumbnail}" alt="${title}" class="h-20 w-20 object-cover transition duration-300 group-hover:scale-105">
                 </button>
             </td>
-            <td class="px-4 py-4 align-middle">
+            <td class="border-y border-slate-200 bg-white px-4 py-4 align-middle shadow-glow">
                 <div class="max-w-sm">
                     <h3 class="font-display text-2xl font-semibold text-brand-ink">${title}</h3>
                     <p class="mt-1 text-sm leading-6 text-brand-text">${description}</p>
                     <p class="mt-2 text-xs text-brand-soft">Archivo: ${escapeHtml(image.filename)}</p>
                 </div>
             </td>
-            <td class="px-4 py-4 align-middle">${buildPriceMarkup(image)}</td>
-            <td class="px-4 py-4 align-middle">${buildDiscountBadge(image)}</td>
-            <td class="px-4 py-4 align-middle">
+            <td class="border-y border-slate-200 bg-white px-4 py-4 align-middle shadow-glow">${buildPriceMarkup(image)}</td>
+            <td class="border-y border-slate-200 bg-white px-4 py-4 align-middle shadow-glow">${buildDiscountBadge(image)}</td>
+            <td class="border-y border-slate-200 bg-white px-4 py-4 align-middle shadow-glow">
                 ${pricing.hasPrice ? `<span class="inline-flex rounded-full border border-emerald-200 bg-emerald-50 px-3 py-1.5 text-sm font-extrabold text-emerald-700">${escapeHtml(finalPrice)}</span>` : '<span class="text-sm text-brand-soft">Sin precio</span>'}
             </td>
-            <td class="px-4 py-4 align-middle">
+            <td class="border-y border-slate-200 bg-white px-4 py-4 align-middle shadow-glow">
                 <span class="text-sm text-brand-text">${escapeHtml(formatDate(image.created_at))}</span>
             </td>
-            <td class="px-4 py-4 align-middle text-right">
+            <td class="rounded-r-[1.5rem] border-y border-r border-slate-200 bg-white px-4 py-4 align-middle text-right shadow-glow">
                 ${isAuthenticated ? `
                     <div class="inline-flex items-center gap-2">
                         <button type="button" class="inline-flex items-center justify-center text-blue-600 transition hover:-translate-y-0.5 hover:text-blue-700" data-edit-image data-id="${image.id}" aria-label="Editar">
