@@ -1,4 +1,5 @@
 .aider*
 /app/node_modules/
 /node_modules/
-/LightsailDefaultKey-us-east-1.pem
+LightsailDefaultKey-us-east-1.pem
+/uploads/

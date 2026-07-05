@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | Andrea Casa de Arte</title>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Manrope', 'sans-serif'],
+                        display: ['Cormorant Garamond', 'serif']
+                    },
+                    colors: {
+                        brand: {
+                            cream: '#fcfaf6',
+                            sand: '#f5efe5',
+                            ink: '#24323c',
+                            text: '#586771',
+                            soft: '#7a8790',
+                            accent: '#c98f5c',
+                            sage: '#7fa594'
+                        }
+                    },
+                    boxShadow: {
+                        soft: '0 24px 60px rgba(42, 55, 64, 0.10)',
+                        glow: '0 16px 34px rgba(42, 55, 64, 0.08)'
+                    }
+                }
+            }
+        };
+    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="min-h-screen overflow-x-hidden bg-brand-cream font-sans text-brand-ink antialiased selection:bg-brand-accent/20 selection:text-brand-ink">
+    <main class="relative mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8 lg:py-8">
+        <div aria-hidden="true" class="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
+            <div class="absolute -left-24 top-12 h-72 w-72 rounded-full bg-brand-accent/20 blur-3xl"></div>
+            <div class="absolute right-0 top-0 h-80 w-80 rounded-full bg-brand-sage/20 blur-3xl"></div>
+            <div class="absolute bottom-0 left-1/3 h-96 w-96 rounded-full bg-brand-accent/10 blur-3xl"></div>
+        </div>
+
+        <section class="mb-5 overflow-hidden rounded-3xl border border-slate-200/80 bg-white/80 shadow-soft backdrop-blur-xl">
+            <div class="grid gap-0 lg:grid-cols-5">
+                <div class="p-6 sm:p-8 lg:col-span-3 lg:p-10">
+                    <span class="inline-flex items-center gap-3 text-xs font-extrabold uppercase tracking-[0.28em] text-brand-accent">
+                        <span class="h-px w-10 bg-gradient-to-r from-brand-accent to-transparent"></span>
+                        Panel de administración
+                    </span>
+                    <h1 class="mt-5 max-w-3xl font-display text-5xl font-semibold leading-[0.9] tracking-[-0.03em] text-brand-ink sm:text-6xl lg:text-7xl">
+                        Gestiona la colección desde un espacio limpio, claro y profesional.
+                    </h1>
+                    <p class="mt-6 max-w-2xl text-lg leading-8 text-brand-text sm:text-xl">
+                        Desde aquí puedes crear, editar o eliminar piezas. Si cambias la foto en una edición, la anterior se reemplaza automáticamente.
+                    </p>
+                </div>
+                <div class="border-t border-slate-200/70 bg-gradient-to-b from-white/90 to-brand-sand/60 p-6 sm:p-8 lg:col-span-2 lg:border-l lg:border-t-0 lg:p-10">
+                    <div class="flex h-full flex-col justify-between gap-6">
+                        <div>
+                            <p class="text-xs font-extrabold uppercase tracking-[0.28em] text-brand-sage">Acceso rápido</p>
+                            <h2 class="mt-4 font-display text-4xl leading-tight text-brand-ink sm:text-5xl">Controla el catálogo sin salir del panel.</h2>
+                            <p class="mt-4 text-base leading-7 text-brand-text">Usa la contraseña para confirmar cada acción sensible y mantén ordenada la carga de contenido.</p>
+                        </div>
+                        <form id="authForm" class="grid gap-3">
+                            <label class="block text-sm font-semibold text-brand-ink" for="adminPassword">Contraseña</label>
+                            <div class="flex flex-col gap-3 sm:flex-row">
+                                <input id="adminPassword" type="password" autocomplete="current-password" class="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-brand-ink placeholder:text-slate-400 focus:border-brand-accent/40 focus:outline-none focus:ring-4 focus:ring-brand-accent/10" placeholder="Ingresa la contraseña">
+                                <button id="authButton" type="submit" class="inline-flex items-center justify-center rounded-full bg-gradient-to-r from-[#d9a372] to-[#8f5638] px-5 py-3 text-sm font-semibold text-white shadow-lg shadow-amber-900/10 transition hover:-translate-y-0.5 hover:from-[#e0af7d] hover:to-[#9a5e3c]">
+                                    Iniciar
+                                </button>
+                            </div>
+                            <p id="authStatus" class="text-sm text-brand-text">Ingresa la contraseña para activar los botones de gestión.</p>
+                            <div class="flex flex-wrap gap-3">
+                                <button id="createImageButton" type="button" class="hidden inline-flex items-center justify-center rounded-full bg-gradient-to-r from-[#d9a372] to-[#8f5638] px-5 py-3 text-sm font-semibold text-white shadow-lg shadow-amber-900/10 transition hover:-translate-y-0.5 hover:from-[#e0af7d] hover:to-[#9a5e3c]">
+                                    <i class="fa-solid fa-plus mr-2" aria-hidden="true"></i>
+                                    Nueva pieza
+                                </button>
+                                <a href="/" class="inline-flex items-center justify-center rounded-full border border-slate-200 bg-white px-5 py-3 text-sm font-semibold text-brand-ink shadow-glow transition hover:-translate-y-0.5 hover:border-brand-accent/30 hover:bg-brand-cream">
+                                    <i class="fa-solid fa-arrow-left mr-2" aria-hidden="true"></i>
+                                    Volver a la portada
+                                </a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-5 rounded-3xl border border-slate-200/80 bg-white/80 p-5 shadow-soft backdrop-blur-xl sm:p-6 lg:p-8">
+            <div class="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+                <div>
+                    <span class="inline-flex items-center gap-3 text-xs font-extrabold uppercase tracking-[0.28em] text-brand-accent">
+                        <span class="h-px w-10 bg-gradient-to-r from-brand-accent to-transparent"></span>
+                        Inventario
+                    </span>
+                    <h2 class="mt-3 font-display text-4xl font-semibold tracking-[-0.02em] text-brand-ink sm:text-5xl">Listado de imágenes</h2>
+                    <p id="dashboardStatus" class="mt-3 max-w-2xl text-base leading-7 text-brand-text">Cargando contenido...</p>
+                </div>
+                <div class="rounded-2xl border border-slate-200 bg-brand-cream px-4 py-3 shadow-glow">
+                    <span class="block text-xs font-extrabold uppercase tracking-[0.22em] text-brand-soft">Total</span>
+                    <strong id="imagesCount" class="mt-1 block font-display text-3xl text-brand-ink">0</strong>
+                </div>
+            </div>
+        </section>
+
+        <section class="rounded-3xl border border-slate-200/80 bg-white/80 p-4 shadow-soft backdrop-blur-xl sm:p-6 lg:p-8">
+            <div class="overflow-x-auto">
+                <table class="min-w-full border-separate border-spacing-y-3">
+                    <thead>
+                        <tr class="text-left text-xs uppercase tracking-[0.24em] text-brand-soft">
+                            <th class="px-4 py-3">Imagen</th>
+                            <th class="px-4 py-3">Título</th>
+                            <th class="px-4 py-3">Precio</th>
+                            <th class="px-4 py-3">Descuento</th>
+                            <th class="px-4 py-3">Valor final</th>
+                            <th class="px-4 py-3">Creada</th>
+                            <th class="px-4 py-3 text-right">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="imagesTableBody"></tbody>
+                </table>
+            </div>
+            <div id="tableEmptyState" class="hidden rounded-[1.75rem] border border-dashed border-slate-300 bg-gradient-to-b from-white to-brand-sand/70 p-10 text-center shadow-sm">
+                <h3 class="font-display text-3xl font-semibold text-brand-ink sm:text-4xl">Aún no hay imágenes registradas</h3>
+                <p class="mt-3 text-sm leading-7 text-brand-text">Crea la primera pieza para comenzar a construir el catálogo.</p>
+            </div>
+        </section>
+
+        <div id="imageModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-950/70 px-4 py-6 backdrop-blur-sm" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+            <div class="relative w-full max-w-4xl overflow-hidden rounded-3xl border border-white/10 bg-white shadow-soft">
+                <button id="modalClose" class="absolute right-4 top-4 inline-flex h-11 w-11 items-center justify-center rounded-full bg-white/90 text-slate-700 shadow-lg transition hover:-translate-y-0.5 hover:bg-white" type="button" aria-label="Cerrar modal">
+                    <i class="fa-solid fa-xmark text-lg" aria-hidden="true"></i>
+                </button>
+                <div class="grid lg:grid-cols-2">
+                    <div class="flex items-center justify-center bg-gradient-to-br from-brand-cream to-brand-sand/60 p-4 sm:p-6 lg:min-h-[30rem]">
+                        <img id="modalPreview" class="max-h-[70vh] w-full max-w-full rounded-[1.5rem] object-contain shadow-[0_18px_40px_rgba(42,55,64,0.12)]" src="" alt="">
+                    </div>
+                    <div class="flex items-center bg-white p-6 sm:p-8 lg:p-10">
+                        <div id="modalPreviewPanel" class="hidden w-full max-w-xl">
+                            <p class="text-xs font-extrabold uppercase tracking-[0.28em] text-brand-accent">Vista previa</p>
+                            <h3 id="modalPreviewTitle" class="mt-3 font-display text-4xl font-semibold leading-tight text-brand-ink sm:text-5xl"></h3>
+                            <div id="modalPreviewPrice" class="mt-4"></div>
+                            <p id="modalPreviewDescription" class="mt-5 text-base leading-8 text-brand-text"></p>
+                        </div>
+                        <div id="modalFormPanel" class="w-full">
+                            <p class="text-xs font-extrabold uppercase tracking-[0.28em] text-brand-accent">Formulario de pieza</p>
+                            <h3 id="modalTitle" class="mt-3 font-display text-4xl font-semibold leading-tight text-brand-ink sm:text-5xl">Nueva pieza</h3>
+                            <form id="imageForm" class="mt-6 grid gap-4 sm:grid-cols-2" method="post" enctype="multipart/form-data">
+                                <input id="formPassword" type="hidden" name="password" value="">
+                                <div class="sm:col-span-1">
+                                    <label class="mb-2 block text-sm font-semibold text-brand-ink" for="formTitle">Título</label>
+                                    <input id="formTitle" name="title" type="text" maxlength="120" class="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-brand-ink placeholder:text-slate-400 focus:border-brand-accent/40 focus:outline-none focus:ring-4 focus:ring-brand-accent/10" placeholder="Ej. Escultura en madera">
+                                </div>
+                                <div class="sm:col-span-1">
+                                    <label class="mb-2 block text-sm font-semibold text-brand-ink" for="formPhotoName">Nombre de archivo</label>
+                                    <input id="formPhotoName" name="photo_name" type="text" maxlength="120" class="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-brand-ink placeholder:text-slate-400 focus:border-brand-accent/40 focus:outline-none focus:ring-4 focus:ring-brand-accent/10" placeholder="Ej. escultura-madera">
+                                </div>
+                                <div class="sm:col-span-1">
+                                    <label class="mb-2 block text-sm font-semibold text-brand-ink" for="formPrice">Precio</label>
+                                    <input id="formPrice" name="price" type="text" inputmode="decimal" maxlength="20" required class="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-brand-ink placeholder:text-slate-400 focus:border-brand-accent/40 focus:outline-none focus:ring-4 focus:ring-brand-accent/10" placeholder="Ej. 120000">
+                                </div>
+                                <div class="sm:col-span-1">
+                                    <label class="mb-2 block text-sm font-semibold text-brand-ink" for="formDiscount">Descuento (%)</label>
+                                    <input id="formDiscount" name="discount" type="number" min="0" max="100" step="1" class="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-brand-ink placeholder:text-slate-400 focus:border-brand-accent/40 focus:outline-none focus:ring-4 focus:ring-brand-accent/10" placeholder="0 a 100">
+                                </div>
+                                <div class="sm:col-span-2">
+                                    <label class="mb-2 block text-sm font-semibold text-brand-ink" for="formDescription">Descripción</label>
+                                    <textarea id="formDescription" name="description" maxlength="500" rows="4" class="min-h-32 w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-brand-ink placeholder:text-slate-400 focus:border-brand-accent/40 focus:outline-none focus:ring-4 focus:ring-brand-accent/10" placeholder="Describe origen, estilo, materiales o inspiración de la pieza"></textarea>
+                                </div>
+                                <div class="sm:col-span-2">
+                                    <label class="mb-2 block text-sm font-semibold text-brand-ink" for="formPhoto">Foto</label>
+                                    <input id="formPhoto" name="photo" type="file" accept="image/*" class="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-brand-ink file:mr-4 file:rounded-full file:border-0 file:bg-brand-cream file:px-4 file:py-2 file:text-sm file:font-semibold file:text-brand-ink hover:file:bg-brand-sand focus:border-brand-accent/40 focus:outline-none focus:ring-4 focus:ring-brand-accent/10">
+                                </div>
+                                <div class="sm:col-span-2 flex flex-wrap items-center gap-3 pt-2">
+                                    <button id="saveButton" type="submit" class="inline-flex items-center justify-center rounded-full bg-gradient-to-r from-[#d9a372] to-[#8f5638] px-5 py-3 text-sm font-semibold text-white shadow-lg shadow-amber-900/10 transition hover:-translate-y-0.5 hover:from-[#e0af7d] hover:to-[#9a5e3c]">
+                                        Guardar pieza
+                                    </button>
+                                    <button id="cancelButton" type="button" class="inline-flex items-center justify-center rounded-full border border-slate-200 bg-white px-5 py-3 text-sm font-semibold text-brand-ink shadow-glow transition hover:-translate-y-0.5 hover:border-brand-accent/30 hover:bg-brand-cream">
+                                        Cancelar
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <template id="tableRowTemplate">
+            <tr class="overflow-hidden rounded-[1.5rem] border border-slate-200 bg-white shadow-glow">
+                <td class="px-4 py-4 align-middle"></td>
+                <td class="px-4 py-4 align-middle"></td>
+                <td class="px-4 py-4 align-middle"></td>
+                <td class="px-4 py-4 align-middle"></td>
+                <td class="px-4 py-4 align-middle"></td>
+                <td class="px-4 py-4 align-middle"></td>
+                <td class="px-4 py-4 align-middle text-right"></td>
+            </tr>
+        </template>
+    </main>
+
+    <script src="dashboard.js"></script>
+</body>
+</html>
